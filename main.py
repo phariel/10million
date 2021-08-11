@@ -71,11 +71,16 @@ class BinaryColor(Lottery):
         return random.sample(range(1, 17), 1)
 
 
-def main():
+def exec():
     bc = BinaryColor()
     print("========final result=========")
     print(bc.getPredictedResults())
     print("=============================")
+
+
+def main(count=5):
+    for i in range(0, count):
+        exec()
 
 
 main()
