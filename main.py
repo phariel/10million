@@ -3,6 +3,7 @@ import random
 
 
 class Lottery:
+
     def __init__(self) -> None:
         self.url = ""
 
@@ -18,8 +19,10 @@ class Lottery:
 
 
 class BinaryColor(Lottery):
+
     def __init__(self) -> None:
         self.url = "https://datachart.500.com/ssq/history/newinc/history_same.php?num=100&sort=0"
+        self.res = None
 
     def getParsedResults(self):
         content = self.getWebContent()
@@ -40,7 +43,9 @@ class BinaryColor(Lottery):
         return {'blueBalls': blueBalls, 'redBalls': redBalls}
 
     def getPredictedResults(self):
-        parsedResult = self.getParsedResults()
+        if self.res == None:
+            self.res = self.getParsedResults()
+        parsedResult = self.res
         blueBallsResult = []
 
         while blueBallsResult.__len__() < 1:
@@ -73,12 +78,12 @@ class BinaryColor(Lottery):
 
 def exec():
     bc = BinaryColor()
-    print("========final result=========")
     print(bc.getPredictedResults())
     print("=============================")
 
 
-def main(count=5):
+def main(count=10):
+    print("========final result=========")
     for i in range(0, count):
         exec()
 
