@@ -1,5 +1,6 @@
 from requests_html import HTMLSession
 import random
+import json
 
 
 class Lottery:
@@ -97,11 +98,20 @@ def getSmsCode():
     return returnCode
 
 
-def main(count=5):
+def getSmsText():
     res = 'a3362'
     for i in range(0, 5):
         res += getSmsCode()
-    print(res)
+    return res
+
+
+def main():
+    finalRes = {'ball1': getSmsText(), 'ball2': getSmsText()}
+    file = open('ball.txt', 'w')
+    finalResText = json.dumps(finalRes)
+    print(finalResText)
+    file.write(finalResText)
+    file.close()
 
 
 main()
