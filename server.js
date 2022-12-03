@@ -1,5 +1,6 @@
 const http = require("http");
 const fs = require("fs");
+const port = process.env["PORT"] ?? 8080;
 
 const requestListener = function (req, res) {
   const cont = fs.readFileSync("./ball.txt", "utf-8");
@@ -10,5 +11,5 @@ const requestListener = function (req, res) {
 };
 
 const server = http.createServer(requestListener);
-server.listen(8080);
-console.log("Server Start");
+server.listen(port);
+console.log(`Server Started at ${port}`);
