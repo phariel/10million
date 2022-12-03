@@ -1,6 +1,7 @@
 from requests_html import HTMLSession
 import random
 import json
+import os
 
 
 class Lottery:
@@ -107,7 +108,7 @@ def getSmsText():
 
 def main():
     finalRes = {'ball1': getSmsText(), 'ball2': getSmsText()}
-    file = open('ball.txt', 'w')
+    file = open(os.path.join(os.path.dirname(__file__), 'ball.txt'), 'w')
     finalResText = json.dumps(finalRes)
     print(finalResText)
     file.write(finalResText)
