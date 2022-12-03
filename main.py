@@ -76,16 +76,32 @@ class BinaryColor(Lottery):
         return random.sample(range(1, 17), 1)
 
 
-def exec():
+# def exec():
+#     bc = BinaryColor()
+#     print(bc.getPredictedResults())
+#     print("=============================")
+
+# def main(count=10):
+#     print("========final result=========")
+#     for i in range(0, count):
+#         exec()
+
+
+def getSmsCode():
     bc = BinaryColor()
-    print(bc.getPredictedResults())
-    print("=============================")
+    codeObj = bc.getPredictedResults()
+    returnCode = '#'
+    allList = codeObj['red'] + codeObj['blue']
+    for ball in allList:
+        returnCode += str.zfill(str(ball), 2)
+    return returnCode
 
 
-def main(count=10):
-    print("========final result=========")
-    for i in range(0, count):
-        exec()
+def main(count=5):
+    res = 'a3362'
+    for i in range(0, 5):
+        res += getSmsCode()
+    print(res)
 
 
 main()
